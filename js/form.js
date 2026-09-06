@@ -36,8 +36,11 @@ var WEB3FORMS_ACCESS_KEY = "PUNE-CHEIA-AICI";
   var fields = {
     nume: document.getElementById("f-nume"),
     tel: document.getElementById("f-tel"),
-    email: document.getElementById("f-email")
+    email: document.getElementById("f-email"),
+    in: document.getElementById("f-in"),
+    out: document.getElementById("f-out")
   };
+  var summaryEl = panel.querySelector("[data-success-summary]");
 
   var reduceMotion = window.matchMedia
     && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -57,10 +60,13 @@ var WEB3FORMS_ACCESS_KEY = "PUNE-CHEIA-AICI";
     return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(value.trim());
   }
 
-  function setError(name, hasError) {
+  function setError(name, hasError, message) {
     var input = fields[name] || document.getElementById("f-" + name);
     var msg = document.getElementById("err-" + name);
-    if (msg) msg.hidden = !hasError;
+    if (msg) {
+      if (message) msg.textContent = message;
+      msg.hidden = !hasError;
+    }
     if (input) {
       if (hasError) input.setAttribute("aria-invalid", "true");
       else input.removeAttribute("aria-invalid");
@@ -75,8 +81,17 @@ var WEB3FORMS_ACCESS_KEY = "PUNE-CHEIA-AICI";
     if (setError("nume", fields.nume.value.trim().length < 2)) problems.push(fields.nume);
     if (setError("tel", !validPhone(fields.tel.value))) problems.push(fields.tel);
     if (setError("email", !validEmail(fields.email.value))) problems.push(fields.email);
-    if (setError("gdpr", !gdpr.checked)) problems.push(gdpr);
 
+    // Datele sunt opționale, dar dacă apare una trebuie să apară amândouă,
+    // iar plecarea trebuie să fie după sosire.
+    var din = fields.in ? fields.in.value : "";
+    var dout = fields.out ? fields.out.value : "";
+    var outErr = "";
+    if (din && !dout) outErr = "Adaugă și data de plecare.";
+    else if (din && dout && dout <= din) outErr = "Plecarea trebuie să fie după sosire.";
+    if (setError("out", !!outErr, outErr) && fields.out) problems.push(fields.out);
+
+    if (setError("gdpr", !gdpr.checked)) problems.push(gdpr);
     return problems;
   }
 
@@ -88,6 +103,14 @@ var WEB3FORMS_ACCESS_KEY = "PUNE-CHEIA-AICI";
       if (msg && !msg.hidden) setError(name, false);
     });
   });
+  ["in", "out"].forEach(function (name) {
+    if (!fields[name]) return;
+    fields[name].addEventListener("change", function () {
+      var msg = document.getElementById("err-out");
+      if (msg && !msg.hidden) setError("out", false);
+    });
+  });
+
   var gdprBox = document.getElementById("f-gdpr");
   if (gdprBox) {
     gdprBox.addEventListener("change", function () {
@@ -127,8 +150,24 @@ var WEB3FORMS_ACCESS_KEY = "PUNE-CHEIA-AICI";
     };
   }
 
+  function buildSummary() {
+    var get = function (id) {
+      var el = document.getElementById(id);
+      return el ? el.value.trim() : "";
+    };
+    var parts = [];
+    if (get("f-in")) parts.push("sosire " + roDate(get("f-in")));
+    if (get("f-out")) parts.push("plecare " + roDate(get("f-out")));
+    var pers = get("f-pers");
+    parts.push(pers + (pers === "1" ? " persoană" : pers.length > 2 ? "" : " persoane"));
+    var room = get("f-room");
+    parts.push(room === "Fără preferință" ? "fără preferință de cameră" : room);
+    return parts.join(" · ");
+  }
+
   function showSuccess(name) {
     if (successName) successName.textContent = name;
+    if (summaryEl) summaryEl.textContent = buildSummary();
     if (demoNote) demoNote.hidden = isLive;
     if (body) body.hidden = true;
     if (errorBox) errorBox.hidden = true;

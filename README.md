@@ -3,7 +3,7 @@
 Site de prezentare pentru pensiunea Select House, Strada Nouă 46, Sibiu.
 HTML static, fără framework și fără dependențe — se publică oriunde.
 
-Construit pe baza prototipului de design `Select House Sibiu v1.dc.html`.
+Construit pe baza prototipului de design `Select House Sibiu.dc.html`.
 
 ---
 
@@ -30,7 +30,8 @@ npm run build
 src/data.js        ← TOT conținutul: camere, galerie, întrebări, distanțe, contact
 src/build.js       ← generează paginile .html din datele de mai sus
 css/site.css       ← stilurile întregului site
-js/site.js         ← meniu, ferestre cu camere, galerie pe tot ecranul, întrebări frecvente
+js/site.js         ← preîncărcare, meniu, parallax, dezvăluiri, ferestre cu camere,
+                     galerie pe tot ecranul, panou glisant, întrebări frecvente
 js/form.js         ← validarea și trimiterea cererii de rezervare
 assets/            ← cele 18 fotografii ale proprietății
 
@@ -50,6 +51,19 @@ actualizează simultan pe pagina principală, pe pagina de camere, în fereastra
 de detalii și în lista derulantă din formular.
 
 ---
+
+## Sistemul de mișcare
+
+Animațiile de dezvăluire pornesc doar dacă browserul le poate duce: un script
+scurt din `<head>` adaugă clasa `js-motion` pe `<html>` atunci când există
+`IntersectionObserver` și utilizatorul nu a cerut mișcare redusă. Fără JS, cu
+mișcare redusă sau într-un browser vechi, tot conținutul rămâne pur și simplu
+vizibil, iar ecranul de preîncărcare nu apare deloc.
+
+Există și o plasă de siguranță: dacă observatorul nu livrează în trei secunde
+(filă în fundal, browser care limitează animațiile), textul apare oricum.
+Regula, dacă modifici stilurile: **orice regulă care ascunde conținut trebuie
+scrisă sub `.js-motion`.**
 
 ## Formularul de rezervare
 

@@ -23,14 +23,25 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
+<script>
+/* Pornește sistemul de mișcare doar dacă browserul îl poate duce. Fără JS,
+   fără IntersectionObserver sau cu mișcare redusă, pagina rămâne vizibilă. */
+(function () {
+  var w = window;
+  if (!("IntersectionObserver" in w)) return;
+  if (w.matchMedia && w.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.className += " js-motion";
+})();
+</script>
 </head>
 <body>
 <a class="skip-link" href="#continut">Sari la conținut</a>
-<header class="header is-solid" data-header-solid>
-  <a class="header__brand" href="index.html">
-    <svg width="26" height="31" viewBox="0 0 52 62" fill="none" aria-hidden="true"><path d="M2 60V26C2 12.7 12.7 2 26 2s24 10.7 24 24v34" stroke="#B59660" stroke-width="2.4"/></svg>
+<header class="header">
+  <a class="header__brand" href="index.html" aria-label="Select House Sibiu, acasă">
+    <svg width="26" height="31" viewBox="0 0 52 62" fill="none" aria-hidden="true"><path d="M2 60V26C2 12.7 12.7 2 26 2s24 10.7 24 24v34" stroke="currentColor" stroke-width="2.6"/></svg>
     <span class="header__word">SELECT HOUSE</span>
   </a>
+
   <nav class="header__nav" aria-label="Navigare principală">
       <a href="index.html">Acasă</a>
       <a href="camere.html">Camere</a>
@@ -39,32 +50,47 @@
       <a href="locatie.html">Locație</a>
       <a href="contact.html">Contact</a>
   </nav>
+
   <div class="header__actions">
-    <a class="header__phone" href="tel:+40770644990">+40 770 644 990</a>
-    <a class="header__cta" href="contact.html#formular-rezervare">Verifică disponibilitatea</a>
-    <button class="header__burger" type="button" aria-expanded="false"
+    <div class="lang" role="group" aria-label="Limbă">
+      <b aria-current="true">RO</b><i>/</i>
+      <button type="button" disabled title="Versiunea în engleză este în pregătire">EN</button>
+    </div>
+    <a class="btn btn--primary" href="contact.html#formular-rezervare" style="min-height:46px;font-size:12.5px">Verifică disponibilitatea</a>
+  </div>
+
+  <div class="header__mobile">
+    <a class="header__icon" href="tel:+40770644990" aria-label="Sună la +40 770 644 990"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h3l2 5-2.4 1.4a11 11 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+    <button class="header__icon header__burger" type="button" aria-expanded="false"
             aria-controls="meniu-mobil" aria-label="Deschide meniul">
-      <span></span>
+      <span><span></span><span></span><span></span></span>
     </button>
   </div>
 </header>
 
-<nav class="mobile-nav" id="meniu-mobil" aria-label="Navigare mobilă" hidden>
-    <a href="index.html">Acasă</a>
-    <a href="camere.html">Camere</a>
-    <a href="index.html#facilitati">Facilități</a>
-    <a href="galerie.html">Galerie</a>
-    <a href="locatie.html">Locație</a>
-    <a href="contact.html">Contact</a>
-  <div class="mobile-nav__foot">
-    <a class="btn btn--deep" href="contact.html#formular-rezervare">Verifică disponibilitatea</a>
-    <a class="btn btn--quiet" href="tel:+40770644990">Sună · +40 770 644 990</a>
+<div class="menu" id="meniu-mobil" role="dialog" aria-modal="true" aria-label="Meniu" hidden>
+  <div class="menu__top">
+    <span class="menu__brand"><svg width="22" height="26" viewBox="0 0 52 62" fill="none" aria-hidden="true"><path d="M2 60V26C2 12.7 12.7 2 26 2s24 10.7 24 24v34" stroke="#B59660" stroke-width="2.8"/></svg><span>SELECT HOUSE</span></span>
+    <button class="menu__close" type="button" aria-label="Închide meniul">×</button>
   </div>
-</nav>
-<main id="continut" style="padding-top:74px">
-  <section class="wrap" style="padding-top:clamp(48px,6vw,78px)">
+  <nav aria-label="Navigare">
+      <a href="index.html">Acasă<span>01</span></a>
+      <a href="camere.html">Camere<span>02</span></a>
+      <a href="index.html#facilitati">Facilități<span>03</span></a>
+      <a href="galerie.html">Galerie<span>04</span></a>
+      <a href="locatie.html">Locație<span>05</span></a>
+      <a href="contact.html">Contact<span>06</span></a>
+  </nav>
+  <div class="menu__foot">
+    <a class="btn btn--primary" href="contact.html#formular-rezervare">Verifică disponibilitatea</a>
+    <a class="btn btn--ghost" href="tel:+40770644990">+40 770 644 990</a>
+    <div class="menu__lang"><b>RO</b><span>/</span><s>EN</s><em>engleza este în pregătire</em></div>
+  </div>
+</div>
+<main id="continut" style="padding-top:var(--header-h)">
+  <section class="wrap" style="padding-top:clamp(34px,6vw,78px)">
     <span class="eyebrow">Informații</span>
-    <h1 class="h-page" style="margin-top:18px;max-width:22ch">Politica de confidențialitate</h1>
+    <h1 class="h-page" style="margin-top:16px;max-width:22ch">Politica de confidențialitate</h1>
 
     <div class="prose">
       <p><strong>Notă:</strong> acest text este o variantă de pornire, redactată pentru structura site-ului.
@@ -86,10 +112,14 @@
         <li>datele de sosire și plecare, numărul de persoane și camera preferată;</li>
         <li>mesajul opțional scris de tine.</li>
       </ul>
-      <p>Site-ul nu folosește cookie-uri de urmărire, nu are conturi de utilizator și nu rulează
-      instrumente de analiză a traficului.</p>
 
-      <h2>De ce le folosim</h2>
+      <h2 id="cookies">Cookie-uri</h2>
+      <p>Site-ul nu folosește cookie-uri de urmărire, nu are conturi de utilizator și nu rulează
+      instrumente de analiză a traficului. Singurele resurse încărcate de la alți furnizori sunt
+      fonturile Google Fonts și harta OpenStreetMap, iar harta se încarcă doar când ajungi cu
+      derularea în dreptul ei.</p>
+
+      <h2>De ce folosim datele</h2>
       <p>Folosim aceste date exclusiv pentru a-ți răspunde la cerere: pentru a verifica disponibilitatea,
       pentru a-ți comunica tariful și pentru a confirma rezervarea. Temeiul prelucrării este consimțământul
       tău, exprimat prin bifarea căsuței din formular.</p>
@@ -109,6 +139,16 @@
       <a href="mailto:sibiusky@gmail.com">sibiusky@gmail.com</a>. Ai de asemenea dreptul de a depune o plângere
       la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal
       (<a href="https://www.dataprotection.ro" target="_blank" rel="noopener">dataprotection.ro</a>).</p>
+
+      <h2 id="termeni">Termeni și condiții</h2>
+      <p>Formularul de pe acest site trimite o <strong>cerere de rezervare</strong>, nu o rezervare
+      confirmată. Disponibilitatea și tariful se confirmă de către gazdă, telefonic sau prin email.
+      Tarifele variază în funcție de perioadă și de durata șederii și se comunică la cerere.</p>
+      <p>Check-in-ul se face între 16:00 – 00:00, iar check-out-ul până la 11:00.
+      Camerele sunt pentru nefumători. Animalele de companie nu sunt acceptate. Paturile suplimentare
+      și pătuțurile se solicită în avans și se confirmă de proprietate.</p>
+      <p>Condițiile de anulare se stabilesc la confirmarea rezervării. Pentru rezervările făcute prin
+      alte platforme se aplică condițiile platformei respective.</p>
     </div>
   </section>
 </main>
@@ -116,7 +156,7 @@
   <div class="wrap">
     <div class="footer__grid">
       <div>
-        <div class="footer__brand"><svg width="26" height="31" viewBox="0 0 52 62" fill="none" aria-hidden="true"><path d="M2 60V26C2 12.7 12.7 2 26 2s24 10.7 24 24v34" stroke="#B59660" stroke-width="2.4"/></svg><span>SELECT HOUSE</span></div>
+        <div class="footer__brand"><svg width="24" height="29" viewBox="0 0 52 62" fill="none" aria-hidden="true"><path d="M2 60V26C2 12.7 12.7 2 26 2s24 10.7 24 24v34" stroke="#B59660" stroke-width="2.4"/></svg><span>SELECT HOUSE</span></div>
         <p class="footer__about">Pensiune de 3 stele cu 8 camere, pe Strada Nouă, la câteva minute de centrul istoric al Sibiului.</p>
         <div class="footer__cert">Certificat de clasificare nr. 21137</div>
       </div>
@@ -128,6 +168,7 @@
           <span>Strada Nouă nr. 46<br>Sibiu 550257, România</span>
           <a href="https://www.facebook.com/p/Select-House-Sibiu-100063453376600/" target="_blank" rel="noopener">Facebook</a>
         </div>
+        <a class="btn btn--primary footer__cta" href="contact.html#formular-rezervare">Verifică disponibilitatea</a>
       </div>
       <div>
         <h2>Navigare</h2>
@@ -143,7 +184,8 @@
         <h2>Informații</h2>
         <div class="footer__col">
           <a href="confidentialitate.html">Politica de confidențialitate</a>
-          <a href="https://www.booking.com/hotel/ro/casa-hader-sibiu.ro.html" target="_blank" rel="noopener">Recenzii pe Booking.com</a>
+          <a href="confidentialitate.html#cookies">Politica de cookies</a>
+          <a href="confidentialitate.html#termeni">Termeni și condiții</a>
         </div>
         <div class="footer__hours">Check-in 16:00 – 00:00<br>Check-out până la 11:00</div>
       </div>
@@ -151,12 +193,41 @@
     <div class="footer__bar">
       <span>© <span data-year>2025</span> Select House Sibiu. Toate drepturile rezervate.</span>
       <span>Camere pentru nefumători · Animalele de companie nu sunt acceptate</span>
+      <button class="to-top" type="button" data-to-top>Înapoi sus</button>
     </div>
   </div>
 </footer>
+<div class="dock-spacer" aria-hidden="true"></div>
 <div class="dock">
-  <a class="btn btn--deep" href="contact.html#formular-rezervare">Cere disponibilitate</a>
-  <a class="btn btn--quiet" href="tel:+40770644990">Sună</a>
+  <a class="dock__call" href="tel:+40770644990" aria-label="Sună la +40 770 644 990"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h3l2 5-2.4 1.4a11 11 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+  <button class="btn btn--primary dock__main" type="button" data-open-sheet>Verifică disponibilitatea</button>
+</div>
+
+<div class="sheet-backdrop" id="panou-disponibilitate" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-titlu">
+    <div class="sheet__grip"><span></span></div>
+    <div class="sheet__head">
+      <div>
+        <h2 id="sheet-titlu">Verifică disponibilitatea</h2>
+        <p>Completează datele, iar gazda confirmă disponibilitatea.</p>
+      </div>
+      <button class="icon-btn" type="button" data-sheet-close aria-label="Închide">×</button>
+    </div>
+    <form id="formular-panou">
+      <div class="sheet__body">
+        <label class="field"><span>Sosire</span><input type="date" data-bq-in></label>
+        <label class="field"><span>Plecare</span><input type="date" data-bq-out></label>
+        <label class="field"><span>Oaspeți</span><select data-bq-guests><option>1 oaspete</option><option selected>2 oaspeți</option><option>3 oaspeți</option><option>2 adulți și 1 copil</option></select></label>
+        <label class="field"><span>Tip cameră</span><select data-bq-type><option>Orice cameră</option><option>Cameră triplă</option><option>Cameră triplă Deluxe</option><option>Cameră Queen standard</option><option>Studio King Deluxe</option><option>Cameră dublă standard</option><option>Cameră Queen Deluxe</option><option>Cameră dublă superioară</option><option>Cameră Deluxe</option></select></label>
+        <p class="form-alert" role="alert" data-bq-error hidden></p>
+        <p class="form-fine" style="margin-top:0">Cererea nu reprezintă o rezervare confirmată. Gazda te contactează pentru disponibilitate și tarif.</p>
+      </div>
+      <div class="sheet__foot">
+        <button class="btn btn--deep" type="submit">Caută o cameră</button>
+        <a class="btn btn--quiet" href="tel:+40770644990">Prefer să discut direct</a>
+      </div>
+    </form>
+  </div>
 </div>
 <script src="js/site.js" defer></script>
 </body>

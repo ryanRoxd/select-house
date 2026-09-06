@@ -112,36 +112,60 @@ const rooms = [
 ];
 
 const gallery = [
-  { src: A + "p01-camera-deluxe.jpg", cap: "Cameră Deluxe · candelabru și fotolii", alt: "Cameră Deluxe cu candelabru, mobilier din lemn închis și covor burgundy" },
-  { src: A + "p02-curte.jpg", cap: "Curtea interioară · intrarea", alt: "Curte interioară pavată cu zid de piatră, plante și uși din lemn" },
-  { src: A + "p07-tripla-deluxe.jpg", cap: "Cameră triplă Deluxe", alt: "Cameră cu canapea, pat sculptat din lemn și covor moale" },
-  { src: A + "p05-studio-king.jpg", cap: "Studio King Deluxe · living", alt: "Living cu canapea albastră, șemineu decorativ și televizor" },
-  { src: A + "p06-semineu.jpg", cap: "Șemineu decorativ și fotoliu", alt: "Șemineu decorativ din piatră, fotoliu de piele și șifonier din lemn" },
-  { src: A + "p14-detaliu-semineu.jpg", cap: "Detaliu de primire", alt: "Prosoape aranjate în formă de lebede, în fața șemineului" },
-  { src: A + "p12-detaliu-pat.jpg", cap: "Tăblie sculptată", alt: "Pat cu tăblie sculptată din lemn închis și lenjerie cu model floral" },
-  { src: A + "p09-queen-deluxe.jpg", cap: "Cameră Queen Deluxe", alt: "Cameră cu masă rotundă, două fotolii albe și pat matrimonial" },
-  { src: A + "p11-dubla-superioara.jpg", cap: "Cameră dublă superioară", alt: "Cameră în mansardă cu șemineu decorativ și cuvertură galbenă" },
-  { src: A + "p13-queen-standard.jpg", cap: "Cameră Queen standard", alt: "Pat alb în stil sanie, pe fundal de tapet cu dungi" },
-  { src: A + "p18-dubla-standard.jpg", cap: "Cameră dublă standard", alt: "Cameră dublă cu pat alb și cuvertură verde-albastru" },
-  { src: A + "p17-tripla-paturi.jpg", cap: "Cameră triplă · două paturi", alt: "Două paturi albe cu cuverturi verzi și noptiere din lemn" },
-  { src: A + "p15-tripla.jpg", cap: "Cameră triplă · zonă de lucru", alt: "Cameră cu pat, birou și accente galbene" },
-  { src: A + "p16-camera-canapea.jpg", cap: "Zonă de stat în cameră", alt: "Cameră cu canapea, pat din lemn închis și covor deschis" },
-  { src: A + "p08-camera-lemn.jpg", cap: "Mobilier din lemn închis", alt: "Cameră cu pat sculptat, canapea și parchet din lemn" },
-  { src: A + "p04-detaliu-camera.jpg", cap: "Pregătit pentru sosire", alt: "Pat pregătit cu prosoape aranjate și petale, lângă fereastră" },
-  { src: A + "p10-baie.jpg", cap: "Baie proprie", alt: "Baie cu tapet floral, oglindă și lămpi calde" },
-  { src: A + "p03-cafea.jpg", cap: "Bucătăria comună · cafea și ceai", alt: "Ceașcă de cafea și cutie cu plicuri de ceai și cafea" }
+  { src: A + "p01-camera-deluxe.jpg", short: "CAMERĂ DELUXE", cap: "Cameră Deluxe · candelabru și fotolii", alt: "Cameră Deluxe cu candelabru, mobilier din lemn închis și covor burgundy" },
+  { src: A + "p02-curte.jpg", short: "CURTEA INTERIOARĂ", cap: "Curtea interioară · intrarea", alt: "Curte interioară pavată cu zid de piatră, plante și uși din lemn" },
+  { src: A + "p07-tripla-deluxe.jpg", short: "TRIPLĂ DELUXE", cap: "Cameră triplă Deluxe", alt: "Cameră cu canapea, pat sculptat din lemn și covor moale" },
+  { src: A + "p05-studio-king.jpg", short: "STUDIO KING", cap: "Studio King Deluxe · living", alt: "Living cu canapea albastră, șemineu decorativ și televizor" },
+  { src: A + "p06-semineu.jpg", short: "ȘEMINEU", cap: "Șemineu decorativ și fotoliu", alt: "Șemineu decorativ din piatră, fotoliu de piele și șifonier din lemn" },
+  { src: A + "p14-detaliu-semineu.jpg", short: "DETALIU", cap: "Detaliu de primire", alt: "Prosoape aranjate în formă de lebede, în fața șemineului" },
+  { src: A + "p12-detaliu-pat.jpg", short: "TĂBLIE SCULPTATĂ", cap: "Tăblie sculptată", alt: "Pat cu tăblie sculptată din lemn închis și lenjerie cu model floral" },
+  { src: A + "p09-queen-deluxe.jpg", short: "QUEEN DELUXE", cap: "Cameră Queen Deluxe", alt: "Cameră cu masă rotundă, două fotolii albe și pat matrimonial" },
+  { src: A + "p11-dubla-superioara.jpg", short: "DUBLĂ SUPERIOARĂ", cap: "Cameră dublă superioară", alt: "Cameră în mansardă cu șemineu decorativ și cuvertură galbenă" },
+  { src: A + "p13-queen-standard.jpg", short: "QUEEN STANDARD", cap: "Cameră Queen standard", alt: "Pat alb în stil sanie, pe fundal de tapet cu dungi" },
+  { src: A + "p18-dubla-standard.jpg", short: "DUBLĂ STANDARD", cap: "Cameră dublă standard", alt: "Cameră dublă cu pat alb și cuvertură verde-albastru" },
+  { src: A + "p17-tripla-paturi.jpg", short: "CAMERĂ TRIPLĂ", cap: "Cameră triplă · două paturi", alt: "Două paturi albe cu cuverturi verzi și noptiere din lemn" },
+  { src: A + "p15-tripla.jpg", short: "ZONĂ DE LUCRU", cap: "Cameră triplă · zonă de lucru", alt: "Cameră cu pat, birou și accente galbene" },
+  { src: A + "p16-camera-canapea.jpg", short: "ZONĂ DE STAT", cap: "Zonă de stat în cameră", alt: "Cameră cu canapea, pat din lemn închis și covor deschis" },
+  { src: A + "p08-camera-lemn.jpg", short: "MOBILIER", cap: "Mobilier din lemn închis", alt: "Cameră cu pat sculptat, canapea și parchet din lemn" },
+  { src: A + "p04-detaliu-camera.jpg", short: "PREGĂTIT", cap: "Pregătit pentru sosire", alt: "Pat pregătit cu prosoape aranjate și petale, lângă fereastră" },
+  { src: A + "p10-baie.jpg", short: "BAIE PROPRIE", cap: "Baie proprie", alt: "Baie cu tapet floral, oglindă și lămpi calde" },
+  { src: A + "p03-cafea.jpg", short: "CAFEA ȘI CEAI", cap: "Bucătăria comună · cafea și ceai", alt: "Ceașcă de cafea și cutie cu plicuri de ceai și cafea" }
 ];
 
-// Indici din `gallery` folosiți în mozaicul de pe pagina principală, cu dimensiunile lor.
+// Mozaicul de pe pagina principală: șapte fotografii, cu dimensiuni diferite
+// în funcție de lățimea ecranului (telefon / tabletă / desktop).
 const galleryHome = [
-  { i: 0, col: "span 2", row: "span 2" },
-  { i: 1, col: "span 1", row: "span 1" },
-  { i: 4, col: "span 1", row: "span 1" },
-  { i: 16, col: "span 1", row: "span 1" },
-  { i: 17, col: "span 1", row: "span 1" },
-  { i: 3, col: "span 2", row: "span 1" }
+  { i: 0,  xl: ["span 2", "span 2"], md: ["span 2", "span 2"], sm: ["span 2", "span 2"] },
+  { i: 1,  xl: ["span 1", "span 1"], md: ["span 1", "span 1"], sm: ["span 1", "span 1"] },
+  { i: 4,  xl: ["span 1", "span 1"], md: ["span 1", "span 1"], sm: ["span 1", "span 1"] },
+  { i: 16, xl: ["span 1", "span 1"], md: ["span 1", "span 1"], sm: ["span 1", "span 1"] },
+  { i: 17, xl: ["span 1", "span 1"], md: ["span 1", "span 1"], sm: ["span 1", "span 1"] },
+  { i: 3,  xl: ["span 2", "span 1"], md: ["span 1", "span 1"], sm: ["span 2", "span 1"] },
+  { i: 6,  xl: ["span 1", "span 1"], md: ["span 1", "span 1"], sm: ["span 1", "span 1"] }
 ];
 
+
+// Facilitățile, grupate pe trei categorii. `shape` alege forma marcajului:
+// pătrat, cerc sau romb.
+const amenityGroups = [
+  {
+    title: "În cameră", shape: "square",
+    items: ["Baie proprie", "Aer condiționat", "TV cu ecran plat", "Frigider",
+            "Fierbător", "Uscător de păr", "Articole de toaletă", "Izolare fonică"]
+  },
+  {
+    title: "Spații comune", shape: "circle",
+    items: ["Bucătărie comună", "Cafea și ceai", "Lounge comun", "Terasă",
+            "Curte interioară", "Mobilier exterior"]
+  },
+  {
+    title: "Confort și acces", shape: "diamond",
+    items: ["Wi-Fi gratuit", "Parcare gratuită disponibilă", "Intrare separată",
+            "Check-in independent disponibil", "Camere pentru nefumători"]
+  }
+];
+
+// Lista plată, folosită doar pentru datele structurate schema.org.
 const amenities = [
   "Wi-Fi gratuit", "Aer condiționat", "Baie proprie", "Intrare separată",
   "TV cu ecran plat", "Frigider", "Uscător de păr", "Articole de toaletă",
@@ -231,7 +255,7 @@ const navFooter = [
 ];
 
 module.exports = {
-  site, rooms, gallery, galleryHome, amenities, landmarks, distances,
+  site, rooms, gallery, galleryHome, amenityGroups, amenities, landmarks, distances,
   walk, guide, reviews, faqs, payments, guestOptions, personOptions,
   nav, navFooter
 };
