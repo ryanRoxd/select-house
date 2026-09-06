@@ -1,0 +1,11 @@
+# Fișiere de lucru din prototip — nu fac parte din site-ul publicat
+uploads/
+contact-sheet.png
+*.dc.html
+support.js
+
+# Sistem
+node_modules/
+.DS_Store
+Thumbs.db
+.vercel
