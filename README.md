@@ -92,16 +92,24 @@ nedorite.
 
 ## Publicare pe Vercel
 
-Site-ul e complet static — Vercel nu trebuie să ruleze nimic.
-
 1. Urcă proiectul pe GitHub.
 2. Pe <https://vercel.com/new>, importă depozitul.
-3. La *Framework Preset* alege **Other**. Lasă *Build Command* gol și
-   *Output Directory* gol (rădăcina).
-4. Apasă **Deploy**.
+3. Apasă **Deploy**. Nu trebuie schimbat nimic în interfață — `vercel.json`
+   spune deja tot ce e nevoie.
 
-`vercel.json` este deja configurat: adrese fără `.html`, memorare în cache a
-fotografiilor timp de un an și câteva anteturi de securitate.
+`vercel.json` conține:
+
+- `buildCommand: npm run build` — regenerează paginile la fiecare publicare,
+  ca fișierele servite să corespundă mereu cu `src/data.js`;
+- `outputDirectory: "."` — paginile sunt scrise în rădăcina proiectului, nu
+  într-un folder `public/`. Fără această linie, Vercel caută `public/` și
+  publicarea eșuează cu *No Output Directory named "public" found*;
+- adrese fără `.html`, memorare în cache a fotografiilor timp de un an și
+  câteva anteturi de securitate.
+
+Pentru că rădăcina este folderul publicat, fișierele sursă (`src/`,
+`package.json`, `README.md`) sunt și ele accesibile public. Nu conțin nimic
+secret — sunt aceleași care se văd oricum pe GitHub.
 
 După publicare, înlocuiește `SITE_URL` din `src/build.js` cu adresa reală și
 rulează din nou `npm run build`, ca adresele canonice și `sitemap.xml` să fie
